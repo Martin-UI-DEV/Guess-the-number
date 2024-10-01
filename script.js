@@ -85,13 +85,10 @@ function displayResult(guess, matchingCount, commonIndexValue ) {
     const paragraph = document.createElement('p');
 
     const resultMessage = matchingCount === 1 
-        ? `${guess} - <span>${matchingCount}</span> Número coincide - <span>${commonIndexValue}</span> posiciones`
-        : `${guess} - <span>${matchingCount}</span> Números coinciden - <span>${commonIndexValue}</span> posiciones`;
+        ? `${guess} - <span>${matchingCount}</span> Número coincide - <span>${commonIndexValue}</span> posiciones coinciden`
+        : `${guess} - <span>${matchingCount}</span> Números coinciden - <span>${commonIndexValue}</span> posiciones coinciden`;
 
     paragraph.innerHTML = resultMessage;
     listItem.appendChild(paragraph);
     resultList.appendChild(listItem);
 }
-
-// const randomElement = $('#random');
-// randomElement.textContent = randomNumber;
