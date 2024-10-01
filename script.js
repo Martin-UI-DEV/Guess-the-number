@@ -90,5 +90,6 @@ function displayResult(guess, matchingCount, commonIndexValue ) {
 
     paragraph.innerHTML = resultMessage;
     listItem.appendChild(paragraph);
-    resultList.appendChild(listItem);
+    const firstChild = resultList.firstChild;
+    resultList.insertBefore(listItem, firstChild);
 }

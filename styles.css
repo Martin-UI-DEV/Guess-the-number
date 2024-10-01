@@ -65,8 +65,8 @@ body {
     display: flex;
     flex-direction: column;
     padding-inline: 8px;
-
     li {
+        opacity: .25;
         width: 100%;
         list-style-type: none;
         margin-bottom: 8px;
@@ -74,4 +74,8 @@ body {
             color: springgreen;
         }
     }
+}
+
+#list li:first-child {
+    opacity: 1;
 }
