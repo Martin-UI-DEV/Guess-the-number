@@ -63,12 +63,15 @@ body {
 
 #list {
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
     padding-inline: 8px;
 
     li {
-        width: 50%;
+        width: 100%;
         list-style-type: none;
         margin-bottom: 8px;
+        span {
+            color: springgreen;
+        }
     }
 }
