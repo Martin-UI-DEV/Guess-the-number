@@ -7,6 +7,7 @@ const resultList = $('#list');
 const messageDisplay = $('#message');
 
 let randomNumber = Math.floor(Math.random() * 8999) + 1000;
+console.log(randomNumber)
 inputGuess.maxLength = 4;
 
 submitButton.addEventListener('click', validateGuess);
@@ -45,6 +46,16 @@ function createCountMap(arr) {
     return countMap;
 }
 
+function matchesIndex(arr1, arr2) {   
+    let matches = 0;   
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] === arr2[i]) {
+            matches++;
+        }
+    }
+    return matches;
+}
+
 function validateGuess() {
     const guess = inputGuess.value;
 
@@ -58,27 +69,23 @@ function validateGuess() {
         const randomArray = convertNumberToArray(randomNumber);
         const guessArray = convertNumberToArray(guess);
         const matchingCount = countMatchingNumbers(randomArray, guessArray);
-        const commonIndexValue =  commonIndex(randomArray, guessArray);
+        const commonIndexValue =  matchesIndex(randomArray, guessArray);
         displayResult(guess, matchingCount, commonIndexValue);
         
     }
 }
 
 function commonIndex(arr1, arr2) {
-    const commonIndices = [];
-    let commonIndex = 0;
+    let commonIndices = [];
     arr1.forEach((num, index) => {
         const indexInArr2 = arr2.indexOf(num);
         if (indexInArr2 !== -1) {
             commonIndices.push({ number: num, indexInArr1: index, indexInArr2: indexInArr2 });        
         }
-        if (index === indexInArr2) {
-            commonIndex++
-        }
     })
-    return commonIndex;
+    const length = commonIndices.length;
+    return length;
 }
-
 
 function displayResult(guess, matchingCount, commonIndexValue ) {
     const listItem = document.createElement('li');
@@ -93,3 +100,5 @@ function displayResult(guess, matchingCount, commonIndexValue ) {
     const firstChild = resultList.firstChild;
     resultList.insertBefore(listItem, firstChild);
 }
+
+
