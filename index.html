@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guess the Number!</title>
-    <link rel="stylesheet " href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Number!</title>
+  <link rel="stylesheet " href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
+  <main>
     <div class="card">
+      <div class="random-number">
+        <div>XXXX</div>
+      </div>
       <div class="card-body">
-        <h1>Guess the 4-digit number</h1>  
+        <h1>Guess the 4-digit number!</h1>
         <div class="content">
-            <div class="input-group">
-                <input type="text" id="guess" placeholder="Ej: 1234">
-                <button id="check">Check</button>          
-            </div>     
-            <p id="message"></p>
-            <p id="random"></p>
-            <ul id="list"></ul>
+          <div class="input-group">
+            <input type="text" id="guess" placeholder="Ej: 1234">
+            <button id="check">Check</button>
+          </div>
+          <p id="message"></p>
+          <p id="random"></p>
+          <ul id="list"></ul>
         </div>
-      </div>      
+      </div>
     </div>
-    <script src="script.js"></script>
+  </main>
+  <script src="script.js"></script>
 </body>
+
 </html>

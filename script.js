@@ -5,11 +5,11 @@ const inputGuess = $('#guess');
 const submitButton = $('#check');
 const resultList = $('#list');
 const messageDisplay = $('#message');
+const randomNumberElement = $('.random-number div');
 
 let randomNumber = Math.floor(Math.random() * 8999) + 1000;
-console.log(randomNumber)
 inputGuess.maxLength = 4;
-
+console.log(randomNumber)
 submitButton.addEventListener('click', validateGuess);
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') validateGuess();
@@ -71,14 +71,34 @@ function validateGuess() {
         const matchingCount = countMatchingNumbers(randomArray, guessArray);
         const commonIndexValue =  matchesIndex(randomArray, guessArray);
         displayResult(guess, matchingCount, commonIndexValue);
-        
+        if (matchingCount  === 4 && commonIndexValue === 4) {
+            showConfetti()
+            const style = document.createElement('style');
+            style.textContent = `
+                .random-number::after {
+                    display: none;
+                }
+                .random-number {
+                    background: #b12088;
+                    color: #fff; 
+                    display: grid;
+                    place-items: center;
+                    border-radius: 0.25rem;
+                }
+                .random-number div {
+                    line-height: 80px;
+                }
+            `;
+            randomNumberElement.textContent = randomNumber;
+            document.head.appendChild(style);
+        }    
     }
 }
 
-function commonIndex(arr1, arr2) {
+function commonIndex(array1, array2) {
     let commonIndices = [];
-    arr1.forEach((num, index) => {
-        const indexInArr2 = arr2.indexOf(num);
+    array1.forEach((num, index) => {
+        const indexInArr2 = array2.indexOf(num);
         if (indexInArr2 !== -1) {
             commonIndices.push({ number: num, indexInArr1: index, indexInArr2: indexInArr2 });        
         }
@@ -92,8 +112,8 @@ function displayResult(guess, matchingCount, commonIndexValue ) {
     const paragraph = document.createElement('p');
 
     const resultMessage = matchingCount === 1 
-        ? `${guess} - <span>${matchingCount}</span> Número coincide - <span>${commonIndexValue}</span> posiciones coinciden`
-        : `${guess} - <span>${matchingCount}</span> Números coinciden - <span>${commonIndexValue}</span> posiciones coinciden`;
+        ? `${guess} - <span>${matchingCount}</span> Digit correct - <span>${commonIndexValue}</span> Correct positions`
+        : `${guess} - <span>${matchingCount}</span> Digits correct - <span>${commonIndexValue}</span> Correct positions`;
 
     paragraph.innerHTML = resultMessage;
     listItem.appendChild(paragraph);
@@ -102,3 +122,11 @@ function displayResult(guess, matchingCount, commonIndexValue ) {
 }
 
 
+function showConfetti() {
+    confetti({
+        particleCount: 300,
+        spread: 100,
+        origin: { y: 0.6 }
+    });
+    confetti();
+}
